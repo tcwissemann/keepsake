@@ -1,0 +1,16 @@
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">KeepSake</a>
+        <ul class="pure-menu-list">
+            {% if user.is_authenticated %}
+            <li class="pure-menu-item"><a href="/" class="pure-menu-link">Dashboard</a></li>
+            <li class="pure-menu-item"><a href="/logout" class="pure-menu-link">Logout</a></li>
+            {% else %}
+            <li class="pure-menu-item"><a href="/login" class="pure-menu-link">Login</a></li>
+            <li class="pure-menu-item"><a href="/sign-up" class="pure-menu-link">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+<!-- pure-menu-selected -->

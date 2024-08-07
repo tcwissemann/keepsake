@@ -1,0 +1,132 @@
+:root {
+    --navy: #2d3e50;
+    --eggshell: #f0ead6;
+    --shadow: #0000001a;
+    --skyblue: #AECFE5;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--eggshell);
+}
+
+body {
+    line-height: 1.7em;
+    font-size: 13px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+    color: var(--navy);
+}
+
+input {
+    background-color: rgba(224, 224, 224, 0.2);
+}
+
+/* nav bar */
+.home-menu {
+    padding: 0.5em;
+    text-align: center;
+    box-shadow: 0 1px 1px var(--shadow);
+    background: var(--navy);    
+}
+
+.pure-menu.pure-menu-fixed {
+    /* Fixed menus normally have a border at the bottom. */
+    border-bottom: none;
+    /* I need a higher z-index here because of the scroll-over effect. */
+    z-index: 4;
+}
+
+.home-menu .pure-menu-heading {
+    color: white;
+    font-weight: 400;
+    font-size: 120%;
+}
+
+.home-menu li a {
+    color: white;
+}
+
+.home-menu li a:hover,
+.home-menu li a:focus {
+    background: none;
+    border: none;
+    color: var(--skyblue);
+}
+
+/* nav bar end*/
+
+/* AUTH */
+.container {
+    width: 33.33%;
+    background-color: white;
+    padding: 3.33%;
+    border-radius: 3.33%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+} 
+
+.authCard {
+    background-color: white;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.entryGroup {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.entryGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.entryGroup input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/*tablet and up*/
+@media (min-width: 48em) {
+
+    /* We increase the body font size */
+    body {
+        font-size: 16px;
+    }
+
+    /* We can align the menu header to the left, but float the
+    menu items to the right. */
+    .home-menu {
+        text-align: left;
+    }
+
+    .home-menu ul {
+        float: right;
+    }
+}

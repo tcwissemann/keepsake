@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.1.1/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@2.1.3/marked.min.js"></script>
+</head> 
+<body>
+    <!-- Text And Html -->
+  <!-- <div x-data="{ hello: 'Hello World' }">
+    <h1 x-text="hello.toUpperCase()"></h1>
+  </div> -->
+
+  <!-- <div x-data="{ body: '<strong>Hello</strong>' }">
+    <span x-html="body"></span>
+  </div> -->
+
+  <!-- Markdown Preview -->
+   <div x-data="{ 
+        body: '',
+        markdown: '',
+        
+        preview () {
+          this.markdown = window.marked(this.body)
+        }
+   
+   }">
+        <div>
+            <div>
+                <textarea cols="30" rows="4" x-model="body"></textarea>
+            </div>
+            <button x-on:click="preview">Preview</button>
+        </div>
+        <div x-html="markdown">
+  
+        </div>
+   </div>
+
+
+</body>
+</html>
