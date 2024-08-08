@@ -21,6 +21,9 @@ def dash():
             
     return render_template("dash.html", user=current_user)
 
+
+#ENDPOINTS:
+
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
     note = json.loads(request.data)
@@ -35,6 +38,7 @@ def delete_note():
 
     
 @views.route("/products")
+@login_required
 def get_products():
     return [
         {

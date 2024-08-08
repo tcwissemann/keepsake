@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-    </head>
-    <body>
-        {% include 'nav.html' %}
-        {% include 'alerts.html' %}
-        <div class="container pure-g">
-            <div class="pure-u-1">
-                {% block content %}
-                {% endblock %}
-            </div>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <!-- Must bake in Tailwind and Alpine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+</head>
+<body class="bg-neutral-100 dark:bg-neutral-900 h-full w-screen overflow-hidden flex flex-col" x-data="{ year: new Date().getFullYear() }">
+    {% include 'nav.html' %}
+    <div class="w-full flex justify-center items-center">
+        <div class="w-6/12">
+            {% include 'alerts.html' %}
         </div>
-        <!-- <p class="text-center text-gray-500 text-xs">&copy;2024 Thomas Wissemann. All rights reserved.</p> -->
-        <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
-    </body>
+    </div>
+    <div class="flex-grow flex justify-center items-center flex-col">
+        {% block content %}
+        {% endblock %}
+        <p class="text-center text-pretty text-xs pt-4 dark:text-neutral-400">&copy;<span x-text="year"></span> Thomas Wissemann. All rights reserved.</p>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
 </html>
 
