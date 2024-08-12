@@ -1,14 +1,14 @@
 <header>
     <nav x-data="{ mobileMenuIsOpen: false }" @click.away="mobileMenuIsOpen = false" class="flex items-center justify-between bg-neutral-50 border-b border-neutral-300 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-900" aria-label="penguin ui menu">
         <!-- Brand Logo -->
-        <a href="#" class="text-2xl font-bold text-neutral-900 dark:text-white">
+        <a href="/" class="text-2xl font-bold text-neutral-900 dark:text-white">
             <span class="text-blue-500">NS<span class="text-black dark:text-white">Regent</span></span>
             <!-- <img src="./your-logo.svg" alt="brand logo" class="w-10" /> -->
         </a>
         <!-- Desktop Menu -->
         <ul class="hidden items-center gap-4 md:flex">
             {% if user.is_authenticated %}
-                <li><a href="/" class="font-bold text-black underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-white dark:hover:text-white" aria-current="page">Dashboard</a></li>
+                <li><a href="/dashboard" class="font-bold text-black underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-white dark:hover:text-white" aria-current="page">Dashboard</a></li>
                 <li><a href="/logout" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-white">Logout</a></li>
             {% else %}
                 <li><a href="/login" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-white">Login</a></li>

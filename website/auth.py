@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, redirect, request, flash, redirect, url_for, render_template_string
+from flask_mailman import EmailMessage
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -14,8 +15,8 @@ def sign_up():
         password = request.form.get('password')
         password_check = request.form.get('password_check')
         
-        user = User.query.filter_by(email=email).first()
-        if user:
+        user_select = User.query.filter_by(email=email).first()
+        if user_select:
             flash('Email already exists!', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 4 characters.', category='error')
@@ -33,7 +34,30 @@ def sign_up():
             flash('Account created!', category='success')
             return redirect(url_for('views.dash'))
             
-    return render_template("sign_up.html", user=current_user)
+    return render_template("auth/sign_up.html", user=current_user)
+
+@auth.route('/reset-password', methods=['GET', 'POST'])
+def reset_password():
+    #Not for people who are logged in.
+    if current_user.is_authenticated:
+        return redirect(url_for("views.dash"))
+    
+    if request.method == 'POST':
+        user_email = request.form.get('email')
+        user_select = User.query.filter_by(email=user_email).first()
+        
+        if user_select:
+            send_reset_password_email(user_select)
+            
+        #Ad ui for info in blue
+        flash (
+            "Instructions to reset your password were sent to your email address,"
+            " if it exists in our system."
+        )
+
+        return redirect(url_for("auth.login"))
+
+    return render_template ("auth/reset_password.html", user=current_user)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -58,10 +82,13 @@ def login():
         else:
             flash('Email does not exist.', category='error')
         
-    return render_template("login.html", user=current_user)
+    return render_template("auth/login.html", user=current_user)
 
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))
+
+def send_reset_password_email(email):
+    pass

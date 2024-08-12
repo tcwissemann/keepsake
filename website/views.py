@@ -6,7 +6,11 @@ import json
 
 views = Blueprint('views', __name__)
 
-@views.route('/', methods=['GET', 'POST'])
+@views.route('/')
+def home():
+    return render_template("general/home.html", user=current_user)
+
+@views.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dash():
     if request.method == 'POST':
@@ -19,11 +23,10 @@ def dash():
             db.session.commit()
             flash('Note Added!', category='success')
             
-    return render_template("dash.html", user=current_user)
+    return render_template("general/dash.html", user=current_user)
 
 
 #ENDPOINTS:
-
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
     note = json.loads(request.data)
@@ -35,26 +38,3 @@ def delete_note():
             db.session.commit()
     
     return jsonify({})
-
-    
-@views.route("/products")
-@login_required
-def get_products():
-    return [
-        {
-            "name": "Rope",
-            "description": "Used to climb heights or swing across chasms.",
-            "price": 15
-        },
-        {
-            "name": "Whip",
-            "description": "An old and trusty friend.",
-            "price": 20
-        },
-        {
-            "name": "Notebook",
-            "description": "Contains lots of valuable information!",
-            "price": 80
-        }
-    ]
-
