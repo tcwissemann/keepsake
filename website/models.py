@@ -1,6 +1,7 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from datetime import datetime,timezone
 
 class Keep(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -11,8 +12,9 @@ class Keep(db.Model):
 #rename nickname to username accross app
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(150), unique=True)
-    password = db.Column(db.String(150))
-    nickname = db.Column(db.String(150))
+    email = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(150), nullable=False)
+    nickname = db.Column(db.String(150), nullable=False)
+    role = db.Column(db.String(20), nullable=False, default='basic')
+    date_created = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     keepsakes = db.relationship('Keep')
-    

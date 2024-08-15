@@ -1,18 +1,18 @@
 <header>
     <nav x-data="{ mobileMenuIsOpen: false }" @click.away="mobileMenuIsOpen = false" class="flex items-center justify-between bg-neutral-50 border-b border-neutral-300 px-6 py-4 dark:border-neutral-700 dark:bg-neutral-900" aria-label="penguin ui menu">
         <!-- Brand Logo -->
-        <a href="/" class="text-2xl font-bold text-neutral-900 dark:text-white">
+        <a href="{{ url_for('views.home') }}" class="text-2xl font-bold text-neutral-900 dark:text-white">
             <span class="text-blue-500">NS<span class="text-black dark:text-white">Regent</span></span>
             <!-- <img src="./your-logo.svg" alt="brand logo" class="w-10" /> -->
         </a>
         <!-- Desktop Menu -->
         <ul class="hidden items-center gap-4 md:flex">
             {% if user.is_authenticated %}
-                <li><a href="/dashboard" class="font-bold text-black underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-white dark:hover:text-white" aria-current="page">Dashboard</a></li>
-                <li><a href="/logout" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-white">Logout</a></li>
+                <li><a href="{{ url_for('views.dash') }}" class="font-bold text-black underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-white dark:hover:text-white" aria-current="page">Dashboard</a></li>
+                <li><a href="{{ url_for('auth.logout') }}" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-white">Logout</a></li>
             {% else %}
-                <li><a href="/login" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-white">Login</a></li>
-                <li><a href="/sign-up" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-white">Sign Up</a></li>
+                <li><a href="{{ url_for('auth.login') }}" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-white">Login</a></li>
+                <li><a href="{{ url_for('auth.sign_up') }}" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-white">Sign Up</a></li>
             {% endif %}
         </ul>
         <!-- Mobile Menu Button -->
@@ -27,11 +27,11 @@
         <!-- Mobile Menu -->
         <ul x-cloak x-show="mobileMenuIsOpen" x-transition:enter="transition motion-reduce:transition-none ease-out duration-300" x-transition:enter-start="-translate-y-full" x-transition:enter-end="translate-y-0" x-transition:leave="transition motion-reduce:transition-none ease-out duration-300" x-transition:leave-start="translate-y-0" x-transition:leave-end="-translate-y-full" id="mobileMenu" class="fixed max-h-svh overflow-y-auto inset-x-0 top-0 z-10 flex flex-col divide-y divide-neutral-300 rounded-b-md border-b border-neutral-300 bg-neutral-50 px-6 pb-6 pt-20 dark:divide-neutral-700 dark:border-neutral-700 dark:bg-neutral-900 md:hidden">
             {% if user.is_authenticated %}
-                <li class="py-4"><a href="/" class="w-full text-lg font-bold text-black focus:underline dark:text-white" aria-current="page">Dashboard</a></li>
-                <li class="py-4"><a href="/logout" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Logout</a></li>
+                <li class="py-4"><a href="{{ url_for('views.dash') }}" class="w-full text-lg font-bold text-black focus:underline dark:text-white" aria-current="page">Dashboard</a></li>
+                <li class="py-4"><a href="{{ url_for('auth.logout') }}" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Logout</a></li>
             {% else %}
-                <li class="py-4"><a href="/login" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Login</a></li>
-                <li class="py-4"><a href="/sign-up" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Sign Up</a></li>
+                <li class="py-4"><a href="{{ url_for('auth.login') }}" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Login</a></li>
+                <li class="py-4"><a href="{{ url_for('auth.sign_up') }}" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Sign Up</a></li>
             {% endif %}
         </ul>
     </nav>
