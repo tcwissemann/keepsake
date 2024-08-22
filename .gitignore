@@ -12,3 +12,12 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+
+todo.txt
+
+config.py
+
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store

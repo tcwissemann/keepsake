@@ -1,15 +1,19 @@
 import os
-from flask import Flask
+from flask import Flask, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_mail import Mail
+
+
+app = Flask(__name__)
+app.config.from_object('app.config')
 
 db = SQLAlchemy()
 DB_NAME = "app.db"
+mail = Mail(app)
 
 def create_app():
-    app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'shh'
-    #Define the path to the database folder inside the website directory
+    #should be better than this
     database_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'database')
 
     #Ensure the database directory exists
@@ -37,6 +41,11 @@ def create_app():
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
+
+    @login_manager.unauthorized_handler
+    def unauthorized():
+        flash('Please log in to access this page.', category='error')
+        return redirect(url_for('auth.login'))
 
     return app
 
