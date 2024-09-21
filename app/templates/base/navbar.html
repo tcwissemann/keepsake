@@ -57,12 +57,10 @@
                         </div>
                     </div>
                 </li>
-                <li class="py-4"><a href="{{ url_for('views.dashboard') }}" class="w-full text-lg font-bold text-black focus:underline dark:text-white" aria-current="page">Dashboard</a></li>
-                <li class="py-4"><a href="{{ url_for('auth.logout') }}" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Logout</a></li>
-                <hr role="none" class="my-2 border-outline dark:border-neutral-700">
-                <li class="p-2"><a href="#" class="w-full text-neutral-600 focus:underline dark:text-neutral-300">Dashboard</a></li>
+                <li class="p-2"><a href="{{ url_for('views.dashboard') }}" class="w-full text-neutral-600 focus:underline dark:text-neutral-300">Dashboard</a></li>
                 <li class="p-2"><a href="#" class="w-full text-neutral-600 focus:underline dark:text-neutral-300">Subscription</a></li>
                 <li class="p-2"><a href="#" class="w-full text-neutral-600 focus:underline dark:text-neutral-300">Settings</a></li>
+                <li class="p-2"><a href="{{ url_for('auth.logout') }}" class="w-full text-neutral-600 focus:underline dark:text-neutral-300">Sign Out</a></li>
             {% else %}
                 <li class="py-4"><a href="{{ url_for('auth.login') }}" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Login</a></li>
                 <li class="py-4"><a href="{{ url_for('auth.sign_up') }}" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Sign Up</a></li>

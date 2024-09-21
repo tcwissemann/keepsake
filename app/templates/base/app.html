@@ -10,19 +10,19 @@
     <!-- Add Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine Plugins -->
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/@imacrayon/alpine-ajax@0.9.0/dist/cdn.min.js"></script>
     <!-- Alpine Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 </head>
-<body class="bg-neutral-100 dark:bg-neutral-900 h-full w-screen flex flex-col" x-data="{ year: new Date().getFullYear() }">
+<body class="bg-neutral-100 dark:bg-zinc-900 h-full w-screen flex flex-col" x-data="{ year: new Date().getFullYear() }">
     {% include 'base/navbar.html' %}
     <div class="w-full flex justify-center items-center">
-        <div class="w-6/12">
+        <div class="w-6/12 pt-4">
             {% include 'base/alerts.html' %}
         </div>
     </div>
-    <div class="flex-grow flex justify-center items-center flex-col">
+    <div class="flex-grow flex justify-center items-center flex-col pb-4">
         {% block content %}
         {% endblock %}
         <p class="text-center text-pretty text-xs pt-4 dark:text-neutral-400">&copy;<span x-text="year"></span> Thomas Wissemann. All rights reserved.</p>
