@@ -35,7 +35,7 @@ def dashboard():
 @views.route('/get_modes', methods=['POST'])
 @login_required
 def get_modes():
-    service = request.form.get('service', type=str)
+    service = request.form.get('service_type', type=str)
 
     if service == 'issue_handler':
         modes = ServiceMode.query.filter(ServiceMode.id <= 27).all()
