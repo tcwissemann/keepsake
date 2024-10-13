@@ -29,6 +29,6 @@ class ResetPasswordForm(FlaskForm):
 class NationForm(FlaskForm):
     nation_name = StringField(label='Nation Name', validators=[DataRequired(), Length(min=2, max=40)])
     nation_password = PasswordField(label='Nation Password', validators=[DataRequired(), Length(min=2, max=32)])
-    service_type = SelectField(label='Service Type', choices=[('', 'Select Service'), ('issue_handler', 'Issue Handler'), ('score_maximizer', 'Score Maximizer'), ('score_minimizer', 'Score Minimizer'), ('scheduled_logins', 'Scheduled Logins')], validators=[DataRequired()])
+    service_type = SelectField(label='Service Type', choices=[('', 'Select Service  '), ('issue_handler', 'Issue Handler'), ('score_maximizer', 'Score Maximizer'), ('score_minimizer', 'Score Minimizer'), ('scheduled_logins', 'Scheduled Logins')], validators=[DataRequired()])
     mode = SelectField(label='Mode', coerce=int, validators=[DataRequired()])
     submit = SubmitField(label='Add', validators=[DataRequired()])

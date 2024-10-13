@@ -49,13 +49,14 @@ class User(db.Model, UserMixin):
 
 class Nation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    flag = db.Column(db.String(150), unique=True, nullable=False)
+    flag = db.Column(db.String(150), nullable=False, default='noFlag')
     nation_name = db.Column(db.String(150), unique=True, nullable=False)
     nation_password = db.Column(db.String(150), nullable=False)
     service_type = db.Column(db.String(150), nullable=False)
     mode = db.Column(db.String(150), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.now(timezone.utc))
-    status = db.Column(db.String(150), nullable=False, default='incomplete')
+    #Status can be 'Busy', 'Fail', or 'Done'
+    status = db.Column(db.String(150), nullable=False, default='Busy')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class ServiceMode(db.Model):
